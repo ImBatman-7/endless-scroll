@@ -30,7 +30,9 @@ function imagesReachedBottom(){
     //reachedDown;
     console.log('img loaded')
     loadedimage++;
+    console.log('loaded image= ', loadedimage)
     if (loadedimage === totalLoadedImages){
+       loader.hidden = true;
        reachedDown = true; 
        console.log('reached down = ', reachedDown)
     }       
@@ -38,7 +40,7 @@ function imagesReachedBottom(){
 
 
 function renderimages(){
-    totalLoadedImages = 0;
+    loadedimage = 0;
     totalLoadedImages = fetchedimages.length;
     console.log('total images loaded= ', totalLoadedImages)
     // looping over fetched images
@@ -76,7 +78,7 @@ function renderimages(){
 
 //scrolling infinitely
 window.addEventListener('scroll', function(){
-    if (window.scrollY + window.innerHeight >= document.body.offsetHeight - 1000 && reachedDown){
+    if (window.scrollY + window.innerHeight >= document.body.offsetHeight && reachedDown){
         reachedDown = false;
         apiFetch();
     }
